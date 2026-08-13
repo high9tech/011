@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HIGH TECH PS</title>
+  <link rel="manifest" href="manifest.json">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+    body {
+      background-color: #0b0e14;
+      background-image: radial-gradient(circle at center, #1a1f2c 0%, #080a0f 100%);
+      color: #00ffcc;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .container {
+      width: 90%;
+      max-width: 600px;
+      text-align: center;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid #00ffcc44;
+      border-radius: 20px;
+      padding: 40px 20px;
+      box-shadow: 0 0 30px rgba(0, 255, 204, 0.15);
+      backdrop-filter: blur(10px);
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(0, 255, 204, 0.1);
+      border: 1px solid #00ffcc;
+      border-radius: 20px;
+      font-size: 14px;
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+    }
+    .main-btn {
+      width: 280px;
+      height: 120px;
+      background: linear-gradient(135deg, #0055ff, #00ffcc);
+      border: none;
+      border-radius: 15px;
+      color: #000;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 30px auto;
+    }
+    .main-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 35px rgba(0, 255, 204, 0.8);
+    }
+    .main-btn:active {
+      transform: scale(0.98);
+    }
+    .main-btn .title {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .main-btn .subtitle {
+      font-size: 16px;
+      font-weight: bold;
+      opacity: 0.85;
+      margin-top: 5px;
+    }
+    .console-box {
+      background: #05070a;
+      border: 1px solid #00ffcc33;
+      border-radius: 10px;
+      padding: 15px;
+      height: 140px;
+      overflow-y: auto;
+      text-align: right;
+      font-family: monospace;
+      font-size: 13px;
+      color: #a0aec0;
+      line-height: 1.6;
+    }
+    .console-line {
+      margin-bottom: 4px;
+    }
+    .prefix {
+      color: #00ffcc;
+      font-weight: bold;
+    }
+    .status-success {
+      color: #38a169;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="status-badge" id="statusBadge">جاري فحص حالة الكاش...</div>
+    
+    <button class="main-btn" onclick="startJailbreak()">
+      <div class="title">HIGH TECH PS</div>
+      <div class="subtitle">jailbreak</div>
+    </button>
+
+    <div class="console-box" id="consoleBox">
+      <div class="console-line"><span class="prefix">[-]</span> النظام جاهز للاستخدام.</div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(reg => {
+            document.getElementById('statusBadge').innerText = 'جاهز للعمل بدون إنترنت (Offline Ready)';
+          })
+          .catch(err => {
+            document.getElementById('statusBadge').innerText = 'متصل';
+          });
+      });
+    }
+  </script>
+</body>
+</html>
