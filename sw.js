@@ -8,6 +8,7 @@ const ASSETS_TO_CACHE = [
   './background.png'
 './logo.png'
 './manifest.json'
+'./goldhen.bin'
 ];
 
 self.addEventListener('install', (event) => {
